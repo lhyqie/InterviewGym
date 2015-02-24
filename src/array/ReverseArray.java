@@ -21,12 +21,7 @@ public class ReverseArray {
 	}
 	
 	public static void reverseArray(int[] arr){
-		int n = arr.length;
-		for(int i = 0; i < n; i ++){
-			int j = n - 1 - i;
-			if(i >= j) break;
-			swap(arr, i, j);
-		}
+		
 	}
 	
 	private static void swap(int []arr, int i, int j){
