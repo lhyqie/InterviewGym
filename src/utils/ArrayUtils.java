@@ -10,8 +10,8 @@ public class ArrayUtils {
 	 * 
 	 * @param n : size of the array
 	 */
-	public static int[] generateRandomIntArray(int n){
-		return generateRandomIntArray(n, 0, 10);
+	public static int[] randomIntArray(int n){
+		return randomIntArray(n, 0, 10);
 	}
 	
 	/**
@@ -22,7 +22,7 @@ public class ArrayUtils {
 	 * @param min : minimum value of the array
 	 * @param max : maximum value of the array
 	 */
-	public static int[] generateRandomIntArray(int n, int min, int max){
+	public static int[] randomIntArray(int n, int min, int max){
 		int arr[] = new int[n];
 		Random rand = new Random();
 		for (int i = 0; i < arr.length; i++) {
