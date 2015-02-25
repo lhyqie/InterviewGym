@@ -20,8 +20,18 @@ public class ReverseArray {
 		print(arr);
 	}
 	
+	/*
+	 * Idea:
+	 * let n be the length of arr
+	 * arr[i] <-> arr[j], for any i < j and  i + j = n - 1 
+	 */
 	public static void reverseArray(int[] arr){
-		
+		int n = arr.length;
+		for(int i = 0; i < n; i++){
+			int j = n - 1 - i;
+			swap(arr, i, j);
+			if( i >= j ) break;
+		}
 	}
 	
 	private static void swap(int []arr, int i, int j){
