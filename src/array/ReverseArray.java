@@ -25,7 +25,7 @@ public class ReverseArray {
 		int high = 5;
 		System.out.print(String.format("Array arr2 before reversal within position [%d,%d]:\t", low, high));
 		print(arr2);
-		reverseArray(arr1, low, high);
+		reverseArray(arr2, low, high);
 		System.out.print(String.format("Array arr2  after reversal within position [%d,%d]:\t", low, high));
 		print(arr2);
 	}
@@ -49,7 +49,11 @@ public class ReverseArray {
 	 * @param high : ending position 
 	 */
 	public static void reverseArray(int []arr, int low, int high){
-		
+		for(int i = low; i <= high; i++){
+			int j = high - (i - low);
+			if( i >= j ) break;
+			swap(arr, i, j);
+		}
 	}
 	
 	private static void swap(int []arr, int i, int j){

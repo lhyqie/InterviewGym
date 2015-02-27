@@ -52,7 +52,23 @@ public class RotateArray {
 	 * Space complexity O(K)
 	 */
 	public static void rotate1(int[] arr, int K){
-		
+		if(K < 0)  throw new RuntimeException("K should be >= 0");  // K should not be negative
+		int n = arr.length;
+		K %= n;   // if K > n, modulo K by n such that K is an integer within [0,n)
+		if(K == 0) return; // no need to rotate if K == 0
+		int b[] = new int[K];
+		//step 1   b[0...K-1] <-- a[0...K-1]   (both of which are of size K)
+		for(int i = 0; i < K; i++){
+			b[i] = arr[i];
+		}
+		//step 2   a[0...n-K-1] <-- a[K...n-1] (both of which are of size N-K)
+		for (int i = 0; i < n-K; i++) {
+			arr[i] = arr[i+K];
+		}
+		//step 3   a[n-K...n-1] <-- b[0...K]   (both of which are of size K)
+		for (int i = 0; i < K; i++) {
+			arr[i+n-K] = b[i];
+		}
 	}
 	
 	/**
