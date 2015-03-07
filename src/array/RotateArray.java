@@ -117,7 +117,11 @@ public class RotateArray {
 		int n = arr.length;
 		K %= n;   // if K > n, modulo K by n such that K is an integer within [0,n)
 		if(K == 0) return; // no need to rotate if K == 0
-		
+		int t = arr[0];                  // first swap, save value of a[0]
+		for (int c = 0; c < n-1; c++) {  // perform n-1 time swaps
+			arr[(c*K)%n] = arr[((c+1)*K)%n];
+		}
+		arr[(-K+n)%n] = t;				 // last swap, 	a[(0-k+n)%n] <-- a[0] 
 		
 	}
 	
