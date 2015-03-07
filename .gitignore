@@ -1,4 +1,4 @@
 /bin/
-.project
-.pydevproject
-.classpath
+*.project
+*.pydevproject
+*.classpath
