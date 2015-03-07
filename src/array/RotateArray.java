@@ -147,6 +147,9 @@ public class RotateArray {
 		if(K < 0)  throw new RuntimeException("K should be >= 0");  // K should not be negative
 		int n = arr.length;
 		K %= n;   // if K > n, modulo K by n such that K is an integer within [0,n)
-		if(K == 0) return; // no need to rotate if K == 0
+		if(K == 0) return; // no need to rotate if K == 0	
+		ReverseArray.reverseArray(arr);
+		ReverseArray.reverseArray(arr,0,n-K-1);
+		ReverseArray.reverseArray(arr,n-K,n-1);
 	}
 }
