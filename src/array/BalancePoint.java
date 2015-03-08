@@ -44,9 +44,11 @@ public class BalancePoint {
 		else	return i;
 		*/
 		
+		// nested for-loops of depth 2, so Time Complexity is O(n^2)
+		// only several temporal variables, Space Complexity is O(1)
 		int n = arr.length;
-		for (int checkpoint = 0; checkpoint < n; checkpoint++) {   // nested for-loops of depth 2, so Time Complexity is O(n^2) 
-			int left_sum = 0;									   // only several temporal variables, Space Complexity is O(1)
+		for (int checkpoint = 0; checkpoint < n; checkpoint++) {    
+			int left_sum = 0;									   
 			int right_sum = 0;
 			for (int i = 0; i <= checkpoint; i++) {
 				left_sum += arr[i];
