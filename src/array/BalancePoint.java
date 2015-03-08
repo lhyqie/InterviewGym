@@ -26,7 +26,36 @@ public class BalancePoint {
 	 * @return
 	 */
 	public static int BalanceNaive(int[] arr) {
+		/*
+		int n=arr.length;
+		int i,suml,sumr;
+		for(i=1; i<n; i++){
+			suml=0;
+			for(int j=0; j<i; j++){
+				suml+=arr[j];
+			}
+			sumr=0;
+			for(int j=i+1; j<n; j++){
+				sumr+=arr[j];
+			}
+			if(suml==sumr)	break;
+		}
+		if(i==n)	return -1;
+		else	return i;
+		*/
 		
+		int n = arr.length;
+		for (int checkpoint = 0; checkpoint < n; checkpoint++) {   // nested for-loops of depth 2, so Time Complexity is O(n^2) 
+			int left_sum = 0;									   // only several temporal variables, Space Complexity is O(1)
+			int right_sum = 0;
+			for (int i = 0; i <= checkpoint; i++) {
+				left_sum += arr[i];
+			}
+			for (int i = n - 1; i >= checkpoint; i--) {
+				right_sum += arr[i];
+			}
+			if(left_sum == right_sum) return checkpoint;
+		}
 		return -1;
 	}
 	
@@ -41,7 +70,22 @@ public class BalancePoint {
 	 * @return
 	 */
 	public static int BalanceImprove(int[] arr) {
-		
+		int n = arr.length;
+		int[] left_sums = new int[n];   // left_sums[i] is the sum of all elements arr[0...i]
+		int[] right_sums = new int[n];  // right_sums[i] is the sum of all elements arr[i...n-1]
+		// three for-loops but not nested, Time Complexity is O(3n) which is the same as O(n)
+		// two buffered arrays are used Space Complexity is O(2n) which is thus O(n)
+		for (int i = 0; i < n; i++) {
+			//left_sums[i] = ???;
+		}
+		for (int i = n - 1; i>= 0; i--) {
+			//right_sum[i] = ???;
+		}
+		for (int checkpoint = 0; checkpoint < n ; checkpoint++) {
+			//if(???){
+			//	return checkpoint;
+			//}
+		}
 		return -1;
 	}
 		
@@ -55,7 +99,24 @@ public class BalancePoint {
 	 * @return
 	 */
 	public static int BalanceBest(int[] arr) {
+		int n = arr.length;
+		int left_sum = 0;   // left_sum up to a checkpoint from left 
+		int right_sum = 0;  // right_sum up to a checkpoint from right
 		
+		// two for-loops but not nested, Time Complexity is O(2n) which is the same as O(n)
+		// only several temporal variables, Space Complexity is O(1)
+		
+		for (int i = n-1; i >= 0; i--) {
+			right_sum += arr[i];
+		}
+		// now  left_sum is 0 sum(a[0..-1]) which is a empty set
+		//      right_sum is sum(a[0...n-1]) which is the total sum of all array
+		for (int checkpoint = 0; checkpoint < n; checkpoint++) {
+			// add each a[checkpoint] left_sum 
+			// substract each a[checkpoint] from right_sum
+			// check if they are equal
+			
+		}
 		return -1;
 	}
 }
