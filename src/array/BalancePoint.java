@@ -78,15 +78,21 @@ public class BalancePoint {
 		// three for-loops but not nested, Time Complexity is O(3n) which is the same as O(n)
 		// two buffered arrays are used Space Complexity is O(2n) which is thus O(n)
 		for (int i = 0; i < n; i++) {
-			//left_sums[i] = ???;
+			if(i == 0){
+				left_sums[i] = arr[i];
+			}else{
+				left_sums[i] = arr[i] + left_sums[i-1];
+			}
 		}
 		for (int i = n - 1; i>= 0; i--) {
-			//right_sum[i] = ???;
+			if(i == n-1){
+				right_sums[i] = arr[i];
+			}else{
+				right_sums[i] = arr[i] + right_sums[i+1];
+			}
 		}
 		for (int checkpoint = 0; checkpoint < n ; checkpoint++) {
-			//if(???){
-			//	return checkpoint;
-			//}
+			if(left_sums[checkpoint] == right_sums[checkpoint]) return checkpoint;
 		}
 		return -1;
 	}
@@ -114,10 +120,9 @@ public class BalancePoint {
 		// now  left_sum is 0 sum(a[0..-1]) which is a empty set
 		//      right_sum is sum(a[0...n-1]) which is the total sum of all array
 		for (int checkpoint = 0; checkpoint < n; checkpoint++) {
-			// add each a[checkpoint] left_sum 
-			// substract each a[checkpoint] from right_sum
-			// check if they are equal
-			
+			left_sum += arr[checkpoint]; // add each a[checkpoint] left_sum 
+			if(left_sum == right_sum) return checkpoint;
+			right_sum -= arr[checkpoint]; // substract each a[checkpoint] from right_sum
 		}
 		return -1;
 	}
