@@ -35,7 +35,10 @@ public class PalindromeSentence {
 	
 	 */
 	public static boolean isPalindromeSentence(String sent) {
-		return false;
+		sent = sent.replaceAll("[^a-zA-Z]","").toLowerCase();
+		if(PalindromeWord.isPalindromeWord(sent)) return true;
+		else return false;
+
 	}
 	
 }
