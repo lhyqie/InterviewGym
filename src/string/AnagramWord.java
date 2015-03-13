@@ -12,17 +12,11 @@ public class AnagramWord {
 		String[] words = {"animal", "manila", "lamina", "limes", "miles", "smile", "slime"}; 
 		for (int i = 0; i < words.length; i++) {
 			for (int j = i+1; j < words.length; j++) {
-				System.out.println(String.format("word1 = %7s  \t word2 = %7s \t isAnagram1(words1, words2) = %s", 
-						words[i], words[j],  isAnagram1(words[i], words[j])));
+				System.out.println(String.format("word1 = %7s  \t word2 = %7s \t isAnagram1(word1, word2) = %s \t isAnagram2(word1, word2) = %s", 
+						words[i], words[j],  isAnagram1(words[i], words[j]), isAnagram2(words[i], words[j])));
 			}
 		}
-		System.out.println("-----------------------------------------------------------------------------");
-		for (int i = 0; i < words.length; i++) {
-			for (int j = i+1; j < words.length; j++) {
-				System.out.println(String.format("word1 = %7s  \t word2 = %7s \t isAnagram2(words1, words2) = %s", 
-						words[i], words[j],  isAnagram2(words[i], words[j])));
-			}
-		}
+		
 	}
 	
 
@@ -49,9 +43,9 @@ public class AnagramWord {
 	 * @param word2
 	 * @return true is they are anagrams if they have the identical counts for each letter
 	 */
-	public static Object isAnagram2(String word1, String word2) {
+	public static boolean isAnagram2(String word1, String word2) {
 		
-		return null;
+		return false;
 	}
 	
 	/**
