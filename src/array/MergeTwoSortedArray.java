@@ -25,7 +25,16 @@ public class MergeTwoSortedArray {
 	 */
 	public static int[] mergeSortedArray(int[] a, int[] b){
 		int[] c = new int[a.length + b.length];
-		
+		int pa = 0, pb = 0, pc = 0;
+		while(pa < a.length && pb < b.length){
+			if(a[pa] < b[pb]){
+				c[pc++] = a[pa++];
+			}else{
+				c[pc++] = b[pb++];
+			}
+		}
+		while(pa < a.length) c[pc++] = a[pa++];
+		while(pb < b.length) c[pc++] = b[pb++];
 		return c;
 	}
 }

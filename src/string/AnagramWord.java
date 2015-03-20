@@ -1,5 +1,7 @@
 package string;
 
+import java.util.Arrays;
+import static utils.ArrayUtils.print ;
 /**
  * 
  * Anagram is a word or phrase formed by rearranging the letters of another word or phrase
@@ -30,8 +32,17 @@ public class AnagramWord {
 	 * Reference: http://stackoverflow.com/questions/605891/sort-a-single-string-in-java
 	 */
 	public static boolean isAnagram1(String word1, String word2){
-		
-		return false;
+		char[] ch1 = word1.toCharArray();
+		char[] ch2 = word2.toCharArray();
+		if(ch1.length != ch2.length) return false;
+		Arrays.sort(ch1);
+		Arrays.sort(ch2);
+		//print(ch1);
+		//print(ch2);
+		for (int i = 0; i < ch1.length; i++) {
+			if(ch1[i] != ch2[i]) return false;
+		}
+		return true;
 	}
 	
 	/**
