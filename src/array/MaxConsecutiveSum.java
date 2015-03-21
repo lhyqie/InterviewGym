@@ -28,7 +28,17 @@ public class MaxConsecutiveSum {
 	 */
 	public static int maxConsecutiveSum(int[] arr) {
 		int max = 0;
-		
+		int accSum = 0; // the accumalative sum, accSum is let to be >= 0
+		for (int e : arr) {
+			if(accSum + e <0){   
+				// in this case  e < 0 , accSum >= 0,  |accSum| < |e|
+				// should not choose e, reset accSum to be 0 
+				accSum = 0;
+			}else{ // accSum + e >= 0  doesn't mean e > 0,  but element after e may > 0 and increase accSum overall
+				accSum += e;
+				max = Math.max(max, accSum);
+			}
+		}
 		return max;
 	}
 }
