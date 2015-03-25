@@ -1,5 +1,6 @@
 package list;
 
+
 public class MyList {
 	
 	private Node head = null;
@@ -12,6 +13,16 @@ public class MyList {
 	
 	public void print(){
 		// mimic toString() method, print the list 
+	}
+	
+	/**
+	 *  make a copy of the list, 
+	 *  this is a deep copy  https://www.cs.utexas.edu/~scottm/cs307/handouts/deepCopying.htm
+	 * @return a deep copy of the list
+	 */
+	public MyList deepCopy(){
+		
+		return this;  //this is shallow copy, has to be fixed
 	}
 	
 	/**
@@ -33,10 +44,14 @@ public class MyList {
 		sb.append("[");
 		Node p = head;
 		while(p != null){
-			sb.append(p.e+",");
+			sb.append(p.e);
+			if(p.next != null){ // if not the last element, append ", "
+				sb.append(", ");
+			}else{              // otherwise append "]" 
+				sb.append("]"); 
+			}
 			p = p.next;
 		}
-		sb.append("]");
 		return sb.toString();
 	}
 	
@@ -48,9 +63,43 @@ public class MyList {
 		head.next.next.next.next = new Node(5);
 		
 		MyList list = new MyList(head);
-		System.out.println(list);
-	
-		list.print();
+		System.out.print(" original list : ");
+		System.out.print(list);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list)));
+		
+		MyList list2 = list.deepCopy();
+		System.out.print(" copied list : ");
+		System.out.print(list2);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
+		
+		
+		System.out.println("\n Now reverse copied list by calling reverse1()");
+		list2.reverse1();
+		
+		System.out.print(" original list : ");
+		System.out.print(list);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list)));
+		
+		System.out.print(" copied list : ");
+		System.out.print(list2);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
+		
+		System.out.println("\n Now reverse copied list by calling reverse2()");
+		list2.reverse2();
+		
+		System.out.print(" original list : ");
+		System.out.print(list);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list)));
+		
+		System.out.print(" copied list : ");
+		System.out.print(list2);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
 		
 	}
 	
