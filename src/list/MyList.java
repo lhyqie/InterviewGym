@@ -11,8 +11,11 @@ public class MyList {
 		this.head = head;
 	}
 	
-	public void print(){
-		// mimic toString() method, print the list 
+	/**
+	 * @return the length of the linkedlist
+	 */
+	public int length(){
+		return 0;
 	}
 	
 	/**
