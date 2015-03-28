@@ -118,7 +118,7 @@ public class MyList {
 	/**
 	 * inner static class
 	 */
-	private static class Node{
+	public static class Node{
 		Node(int e){
 			this.e = e;
 			this.next = null;
