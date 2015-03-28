@@ -24,8 +24,17 @@ public class MyList {
 	 * @return a deep copy of the list
 	 */
 	public MyList deepCopy(){
+		Node p1 = this.head;
+		Node head2 = new Node(p1.e);
+		Node p2 = head2;
+		while(p1 != null){
+			p1 = p1.next;
+			if(p1 == null ) p2.next = null;
+			else p2.next = new Node(p1.e);
+			p2 = p2.next;
+		}
 		
-		return this;  //this is shallow copy, has to be fixed
+		return new MyList(head2);  //this is shallow copy, has to be fixed
 	}
 	
 	/**
