@@ -3,7 +3,7 @@ package list;
 
 public class MyList {
 	
-	private Node head = null;
+	public Node head = null;
 	
 	MyList(){}
 	
@@ -59,11 +59,10 @@ public class MyList {
 			sb.append(p.e);
 			if(p.next != null){ // if not the last element, append ", "
 				sb.append(", ");
-			}else{              // otherwise append "]" 
-				sb.append("]"); 
 			}
 			p = p.next;
 		}
+		sb.append("]"); 
 		return sb.toString();
 	}
 	
