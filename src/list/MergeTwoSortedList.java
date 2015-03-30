@@ -11,6 +11,9 @@ public class MergeTwoSortedList {
 		System.out.println("list 3 =  merge(list1, list2)");
 		MyList list3 = merge(list1, list2);
 		System.out.println("list 3 : " + list3);
+		System.out.println("since list 3 is in-place merge, list1 and list2 are dirty");
+		System.out.println("list 1 :" + list1);
+		System.out.println("list 2 :" + list2);
 	}
 	
 	/**
