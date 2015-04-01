@@ -3,7 +3,7 @@ package list;
 
 public class MyList {
 	
-	private Node head = null;
+	public Node head = null;
 	
 	MyList(){}
 	
@@ -39,6 +39,7 @@ public class MyList {
 	
 	/**
 	 * in place reverse, without using recursion
+	 * Time Complexity O(n)
 	 */
 	public void reverse1(){
 		
@@ -46,9 +47,45 @@ public class MyList {
 	
 	/**
 	 * in place reverse, using recursion
+	 * Time Complexity O(n)
 	 */
 	public void reverse2(){
 		
+	}
+	
+	/**
+	 * @return k-th element (0 based index) from head
+	 * if the list has less than k+1 elements, return null
+	 * Time Complexity O(n)
+	 */
+	public Node kFromHead(int k){
+		if(k < 0) throw new RuntimeException("Param k invalid");
+		Node ret = null;
+		
+		return ret;
+	}
+	
+	/**
+	 * @return k-th element (0 based index) from rear
+	 * if the list has less than k+1 elements, return null
+	 * Time Complexity O(n)
+	 */
+	public Node kFromRear(int k){
+		if(k < 0) throw new RuntimeException("Param k invalid");
+		Node ret = null;
+		
+		return ret;
+	}
+	
+	/**
+	 * @return the middle element of the list
+	 * if there are even number of elements, return the first one in the middle
+	 * Time Complexity O(n)
+	 */
+	public Node middle(){
+		Node ret = null;
+		
+		return ret;
 	}
 	
 	public String toString(){
@@ -59,15 +96,20 @@ public class MyList {
 			sb.append(p.e);
 			if(p.next != null){ // if not the last element, append ", "
 				sb.append(", ");
-			}else{              // otherwise append "]" 
-				sb.append("]"); 
 			}
 			p = p.next;
 		}
+		sb.append("]"); 
 		return sb.toString();
 	}
 	
+	public void print(){
+		System.out.println(this);
+	}
+		
 	public static void main(String[] args) {
+		
+		// create a list
 		Node head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(3);
@@ -75,11 +117,17 @@ public class MyList {
 		head.next.next.next.next = new Node(5);
 		
 		MyList list = new MyList(head);
+		
+		// test length of the list
+		System.out.println(" The length of list :" + list.length());
+		System.out.println();
+		
 		System.out.print(" original list : ");
 		System.out.print(list);
 		System.out.print(" addrees at JVM : ");
 		System.out.println(Integer.toHexString(System.identityHashCode(list)));
 		
+		// test copy a list
 		MyList list2 = list.deepCopy();
 		System.out.print(" copied list : ");
 		System.out.print(list2);
@@ -113,6 +161,29 @@ public class MyList {
 		System.out.print(" addrees at JVM : ");
 		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
 		
+		System.out.println("\n-------------------------------------------------------------\n");
+		// create a new list with odd number of elements
+		MyList list_odd = new MyList(new Node(1, new Node(2, new Node(3, new Node(4, 
+				                     new Node(5, new Node(6, new Node(7))))))));
+		System.out.print("list_odd : "); list_odd.print();
+		// create a new list with even number of elements
+		MyList list_even = new MyList(new Node(10, new Node(20, new Node(30, new Node(40, 
+                new Node(50, new Node(60)))))));
+		System.out.print("list_even : "); list_even.print();
+		System.out.println();
+		// test list kthFromHead and kthFromRear
+		for (int k = 0; k < 10; k++) {
+			System.out.println(k + "-th element from head of list_odd : " + list_odd.kFromHead(k));
+		}
+		System.out.println();
+		for (int k = 0; k < 10; k++) {
+			System.out.println(k + "-th element from rear of list_even : " + list_even.kFromRear(k));
+		}
+		// test list middle
+		System.out.println("\n");
+		System.out.println("middle element of list_odd : " + list_odd.middle());
+		System.out.println("middle element of list_even : " + list_even.middle());
+		
 	}
 	
 	/**
@@ -129,5 +200,8 @@ public class MyList {
 		}
 		int e;
 		Node next;
+		public String toString(){
+			return "MyList.Node(" + e + ")";
+		}
 	}
 }
