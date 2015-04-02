@@ -1,0 +1,4 @@
+Gym dumbbell
+multiplication of a lot of doubles
+sorted array to binary tree
+linked list to binary tree
