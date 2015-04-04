@@ -110,10 +110,11 @@ public class MyBTree {
 		System.out.print(root.e + " ");
 	}
 
-	private static class Node{
+	public static class Node{
 		
 		public Node left;
 		public Node right;
+		public int e;
 		
 		public Node(int e){
 			this.e = e;
@@ -125,7 +126,7 @@ public class MyBTree {
 			this.right = right;
 		}
 		
-		private int e;		
+				
 	}
 }
 

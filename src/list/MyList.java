@@ -5,9 +5,19 @@ public class MyList {
 	
 	public Node head = null;
 	
-	MyList(){}
+	public MyList(){}
 	
-	MyList(Node head){ 
+	public MyList(int[] arr){
+		if(arr == null || arr.length == 0) return;
+		head = new Node(arr[0]);
+		Node p = head;
+		for (int i = 1; i < arr.length; i++) {
+			p.next = new Node(arr[i]);
+			p = p.next;
+		}
+	}
+	
+	public MyList(Node head){ 
 		this.head = head;
 	}
 	
@@ -15,7 +25,13 @@ public class MyList {
 	 * @return the length of the linkedlist
 	 */
 	public int length(){
-		return 0;
+		Node p = head;
+		int cnt = 0;
+		while(p != null){
+			cnt ++; 
+			p = p.next;
+		}
+		return cnt;
 	}
 	
 	/**
@@ -190,16 +206,16 @@ public class MyList {
 	 * inner static class
 	 */
 	public static class Node{
-		Node(int e){
+		public Node(int e){
 			this.e = e;
 			this.next = null;
 		}
-		Node(int e, Node next){
+		public Node(int e, Node next){
 			this.e = e;
 			this.next = next;
 		}
-		int e;
-		Node next;
+		public int e;
+		public Node next;
 		public String toString(){
 			return "MyList.Node(" + e + ")";
 		}
