@@ -37,7 +37,7 @@ import list.MyList;
 	Following is C implementation of method 2. The main code which creates Balanced BST is highlighted.
  */
 
-public class SortedLinkedListToBinaryTreee {
+public class SortedLinkedListToBinaryTree {
 	
 	private static MyList.Node head = null;
 
