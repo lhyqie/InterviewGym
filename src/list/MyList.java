@@ -58,6 +58,17 @@ public class MyList {
 	 * Time Complexity O(n)
 	 */
 	public void reverse1(){
+		if(head == null || head.next == null) return;
+		Node p = head.next;  // p iterates from the second node to last one
+		head.next = null;
+		while(p != null){
+			Node q = p;     // q will always be the node before p in the following loop
+			p = p.next;
+			// insert q to the front of the first node
+			q.next = head;
+			head = q;
+			
+		}
 		
 	}
 	
@@ -66,7 +77,28 @@ public class MyList {
 	 * Time Complexity O(n)
 	 */
 	public void reverse2(){
-		
+		head = reverse_cur(head);
+	}
+	
+	/**
+	 * Idea:  for a list of n elements (n>=2)
+	 *        let p storage the old head
+	 *        reverse last n-1 nodes,
+	 *        let head be new head of the reversed last n-1 nodes
+	 *        the tail of the last n-1 nodes will be p.next 
+	 *        let tail.next points to p (current head)
+	 *        let p.next be null
+	 *         
+	 */
+	private Node reverse_cur(Node head){
+		if(head == null) return null;
+		if(head.next == null) return head;
+		//if the list is more than 1 node
+		Node p = head;
+		head = reverse_cur(head.next);
+		p.next.next = p;
+		p.next = null;
+		return head;
 	}
 	
 	/**
@@ -145,37 +177,39 @@ public class MyList {
 		
 		// test copy a list
 		MyList list2 = list.deepCopy();
-		System.out.print(" copied list : ");
+		System.out.print(" copied list list2: ");
 		System.out.print(list2);
 		System.out.print(" addrees at JVM : ");
 		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
 		
 		
-		System.out.println("\n Now reverse copied list by calling reverse1()");
+		System.out.println("\n Now reverse copied list list2 by calling reverse1()");
 		list2.reverse1();
 		
-		System.out.print(" original list : ");
-		System.out.print(list);
-		System.out.print(" addrees at JVM : ");
-		System.out.println(Integer.toHexString(System.identityHashCode(list)));
-		
-		System.out.print(" copied list : ");
-		System.out.print(list2);
-		System.out.print(" addrees at JVM : ");
-		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
-		
-		System.out.println("\n Now reverse copied list by calling reverse2()");
-		list2.reverse2();
 		
 		System.out.print(" original list : ");
 		System.out.print(list);
 		System.out.print(" addrees at JVM : ");
 		System.out.println(Integer.toHexString(System.identityHashCode(list)));
 		
-		System.out.print(" copied list : ");
+		System.out.print(" copied list list2: ");
 		System.out.print(list2);
 		System.out.print(" addrees at JVM : ");
 		System.out.println(Integer.toHexString(System.identityHashCode(list2)));
+		
+		MyList list3 = list.deepCopy();
+		System.out.println("\n Now reverse copied list list 3by calling reverse2()");
+		list3.reverse2();
+		
+		System.out.print(" original list : ");
+		System.out.print(list);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list)));
+		
+		System.out.print(" copied list list3: ");
+		System.out.print(list3);
+		System.out.print(" addrees at JVM : ");
+		System.out.println(Integer.toHexString(System.identityHashCode(list3)));
 		
 		System.out.println("\n-------------------------------------------------------------\n");
 		// create a new list with odd number of elements
