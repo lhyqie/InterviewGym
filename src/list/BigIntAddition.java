@@ -5,7 +5,7 @@ class BigInt{
 	private MyList digits = null;
 	
 	public BigInt(){
-		digits = new MyList(new MyList.Node(100));
+		digits = new MyList();
 	}
 	
 	public BigInt(String aLargeNumber){
@@ -51,7 +51,7 @@ public class BigIntAddition {
 		System.out.println(b);
 		
 		BigInt c = a.add(b);
-		
+		System.out.println(c);
 	}
 	
 }
