@@ -1,9 +1,5 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
 /**
  * Given an array of integers representing heights of walls in 1D array
  * 
