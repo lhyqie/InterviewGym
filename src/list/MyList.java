@@ -108,9 +108,14 @@ public class MyList {
 	 */
 	public Node kFromHead(int k){
 		if(k < 0) throw new RuntimeException("Param k invalid");
-		Node ret = null;
-		
-		return ret;
+		Node p = head;
+		int i = 0;
+		while(p != null && i < k){
+			p = p.next;
+			i++;
+		}
+		if(p == null) return null;
+		else return p;
 	}
 	
 	/**
@@ -120,9 +125,15 @@ public class MyList {
 	 */
 	public Node kFromRear(int k){
 		if(k < 0) throw new RuntimeException("Param k invalid");
-		Node ret = null;
-		
-		return ret;
+		Node p1 = kFromHead(k);
+		if(p1 == null) return null;
+		p1 = p1.next;
+		Node p2 = head;
+		while(p1 != null){
+			p1 = p1.next;
+			p2 = p2.next;
+		}
+		return p2;
 	}
 	
 	/**
@@ -131,9 +142,14 @@ public class MyList {
 	 * Time Complexity O(n)
 	 */
 	public Node middle(){
-		Node ret = null;
-		
-		return ret;
+		Node fast = head;
+		Node slow = head;
+		while(fast != null && fast.next != null){
+			fast = fast.next.next;
+			if(fast ==null || fast.next == null) break;
+			slow = slow.next;
+		}
+		return slow;
 	}
 	
 	public String toString(){
