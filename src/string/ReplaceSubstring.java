@@ -12,9 +12,15 @@ public class ReplaceSubstring {
 //		String pattern = "aa";
 //		String replaced = "AA";
 		
-		String source = "南师大,我在南师大，南师大很大,南师大";
-		String pattern = "南师大";
-		String replaced = "南京师范大学";
+//		String source = "南师大,我在南师大，南师大很大,南师大";
+//		String pattern = "南师大";
+//		String replaced = "南京师范大学";
+		
+		
+		String source = "wang ping wangshanwangpinghua";
+		String pattern = "wang";
+		String replaced = "zhang";
+
 		
 		System.out.println("source : \n" + source + "\n");
 		

@@ -121,7 +121,6 @@ public class ExpressionEvaluation {
 			    "100 * ( 2 + 12 ) / 14",
 			    "6+5*(3-2)",
 			    "10 * (2 + 6)",
-			    
 			    //"2*(-2)"  // this is not currently supported   because - is not a binary operator but a unary operator
 			   
 		};
@@ -138,6 +137,8 @@ public class ExpressionEvaluation {
 			    "1-2.3",
 			    "100.4 * ( 2.3 + 1.2 ) / 14.3",
 			    "(2+1.1)",
+			    "(5-4)/4-2",
+			    "(5.5-4.5)/2+56.7",
 		};
 		
 		for (String expression : double_expressions) {
