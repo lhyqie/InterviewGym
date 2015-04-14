@@ -110,7 +110,7 @@ public class ExpressionEvaluation {
 	
 	public static void main(String[] args) {
 		String[] init_expressions = {
-				//"13",
+				"13",
 				"1+2",
 				"1-2",
 				"(1+2)",
@@ -122,7 +122,11 @@ public class ExpressionEvaluation {
 			    "6+5*(3-2)",
 			    "10 * (2 + 6)",
 			    //"2*(-2)"  // this is not currently supported   because - is not a binary operator but a unary operator
-			   
+			    "2 + 3 * ( 1 - 4*2)",
+			    "1+(2)",
+				"0 * 1 + 2",
+				"1  - 0  * 1 + 8",
+				"1 + 0 - 0  * 1 + 2 * 2 * (2)",
 		};
 		
 		for (String expression : init_expressions) {
@@ -132,6 +136,17 @@ public class ExpressionEvaluation {
 		// ==========================================================================
 		System.out.println("===========================================================================");
 		String[] double_expressions = {
+				"13",
+				"1+2",
+				"1-2",
+				"(1+2)",
+				"(1+2+3)",
+				"10 + 2 * 6",
+			    "100 * 2 + 12",
+			    "3 * (2+1)",
+			    "100 * ( 2 + 12 ) / 14",
+			    "6+5*(3-2)",
+			    "10 * (2 + 6)",
 			    "1.2",
 			    "1.3 + 2.3",
 			    "1-2.3",
@@ -139,6 +154,11 @@ public class ExpressionEvaluation {
 			    "(2+1.1)",
 			    "(5-4)/4-2",
 			    "(5.5-4.5)/2+56.7",
+			    "2 + 3 * ( 1 - 4*2)",
+			    "1+(2)",
+				"0 * 1 + 2",
+				"1  - 0  * 1 + 8",
+				"1 + 0 - 0  * 1 + 2 * 2 * (2)",
 		};
 		
 		for (String expression : double_expressions) {
@@ -213,10 +233,25 @@ public class ExpressionEvaluation {
 					int v1 = values.pop();
 					values.push(intCal(op, v1, v2));
 					if(chs[i] == ')'){
+						while(ops.peek() != '('){   // (1+3.1)
+							op = ops.pop();
+							v2 = values.pop(); // pay attention to the order  v2 first get popped
+							v1 = values.pop();
+							values.push(intCal(op, v1, v2));
+						}
 						ops.pop();  //pop (
-					}else if(chs[i] != '#'){
-						ops.push(chs[i]);
-					}
+					}else if(ops.size() >= 2){
+						while( opt_pre.get(new Pair(ops.get(ops.size()-1), chs[i])) == '>' ){
+							op = ops.pop();
+							v2 = values.pop(); // pay attention to the order  v2 first get popped
+							v1 = values.pop();
+							values.push(intCal(op, v1, v2));
+						}
+						if(chs[i] != '#') ops.push(chs[i]);
+					}else if(chs[i] != '#') ops.push(chs[i]);
+					
+				}else{  // precedence == '='
+					ops.pop();
 				}
 				
 			}
@@ -278,9 +313,18 @@ public class ExpressionEvaluation {
 							values.push(doubleCal(op, v1, v2));
 						}
 						ops.pop();  //pop (
-					}else if(chs[i] != '#'){
-						ops.push(chs[i]);
-					}
+					}else if(ops.size() >= 2){
+						while( opt_pre.get(new Pair(ops.get(ops.size()-1), chs[i])) == '>' ){
+							op = ops.pop();
+							v2 = values.pop(); // pay attention to the order  v2 first get popped
+							v1 = values.pop();
+							values.push(doubleCal(op, v1, v2));
+						}
+						if(chs[i] != '#') ops.push(chs[i]);
+					}else if(chs[i] != '#') ops.push(chs[i]);
+					
+				}else{  // precedence == '='
+					ops.pop();
 				}
 				
 			}
