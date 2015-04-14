@@ -11,7 +11,7 @@ public class RobotPath {
 	 *  
 	 *  robot can only go down or go right
 	 *  
-	 *  the # of paths is C(m,n)
+	 *  the # of paths is C(m+n,n)
 	 */
 	
 	public static void printPath(int m, int n , int x, int y, Stack<String> paths){
@@ -28,7 +28,7 @@ public class RobotPath {
 				paths.pop();
 			}
 			if(y < n){
-				paths.push("¡ý");
+				paths.push("Â¡Ã½");
 				printPath(m, n, x , y + 1, paths);
 				paths.pop();
 			}
