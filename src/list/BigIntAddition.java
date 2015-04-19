@@ -92,11 +92,10 @@ public class BigIntAddition {
 	
 	public static void main(String[] args) {
 		
-		String[] As = {"5","1","","1"};
-		String[] Bs = {"5","" ,"1","9999"};
+		String[] As = {"5","1","","1", "123456789123456789"};
+		String[] Bs = {"5","" ,"1","9999","111111111111111111"};
 		
 		for (int i = 0; i < Bs.length; i++) {
-			i = 3;
 			BigInt a = new BigInt(As[i]);
 			System.out.println("a = " + a);
 			
@@ -108,6 +107,15 @@ public class BigIntAddition {
 			System.out.println();
 		}
 		
+		BigInt a = new BigInt("123456789123456789");
+		System.out.println(a);
+		
+		BigInt b = new BigInt("11111111111111111111");
+		System.out.println(b);
+		
+		BigInt c = a.add(b);
+		System.out.println(c);
+
 		
 	}
 	
