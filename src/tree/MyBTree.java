@@ -50,7 +50,7 @@ public class MyBTree {
 		 *             / \
 		 *            5   6  
 		 */
-		int[] arr2 = {1,2,3,-9999,-9999,-9999,4,-9999,-9999,-9999,-9999,-9999,-9999,5,6};
+		int[] arr2 = {1,2,2,-9999,-9999,-9999,4,-9999,-9999,-9999,-9999,-9999,-9999,5,6};
 		tree = new MyBTree(arr2);
 		System.out.print("Preoder :");
 		tree.print(MyBTree.PREORDER);

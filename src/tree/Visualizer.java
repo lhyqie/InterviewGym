@@ -1,6 +1,7 @@
 package tree;
 
 import java.awt.Dimension;
+import java.util.IdentityHashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.TreeMap;
@@ -56,34 +57,35 @@ public class Visualizer {
 		if(tree.root == null) return;
 		
 		Graph<Vertex, String> g = new DirectedSparseMultigraph<Vertex, String>();
-		TreeMap<String, Integer> node2id = new TreeMap<String, Integer>();
+		IdentityHashMap<Node, Integer> node2id = new IdentityHashMap<Node, Integer>();
 		AtomicInteger id = new AtomicInteger(0);
 	
 		Queue<Node> Q = new LinkedList<Node>();
 		Q.offer(tree.root);
 		while(!Q.isEmpty()){
 			Node t = Q.poll();
-			node2id.put(""+t.e, id.get());
+			node2id.put(t, id.get());
 			id.incrementAndGet();
 			System.out.println(id + " : " + t.e);
 			if(t.left != null) Q.offer(t.left);
 			if(t.right != null) Q.offer(t.right);
 		}
 		
+		id = new AtomicInteger(0);
 		Q.clear();
 		Q.offer(tree.root);
 		while(!Q.isEmpty()){
 			Node t = Q.poll();
 			if(t.left != null){
 				Q.offer(t.left);
-				int parentId = node2id.get(""+t.e);
-				int childId = node2id.get(""+t.left.e);
+				int parentId = node2id.get(t);
+				int childId = node2id.get(t.left);
 				g.addEdge("edge:"+parentId+"->"+childId, new Vertex(parentId, ""+t.e), new Vertex(childId, ""+t.left.e), EdgeType.DIRECTED);
 			}
 			if(t.right != null) {
 				Q.offer(t.right);
-				int parentId = node2id.get(""+t.e);
-				int childId = node2id.get(""+t.right.e);
+				int parentId = node2id.get(t);
+				int childId = node2id.get(t.right);
 				g.addEdge("edge:"+parentId+"->"+childId, new Vertex(parentId, ""+t.e), new Vertex(childId, ""+t.right.e), EdgeType.DIRECTED);
 			}
 		}
