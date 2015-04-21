@@ -1,5 +1,20 @@
 package tree;
 
+import java.awt.Dimension;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javax.swing.JFrame;
+
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseMultigraph;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
+import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 import number.Number;
 
 public class MyBTree {
@@ -21,7 +36,11 @@ public class MyBTree {
 		System.out.print("Postorder :");
 		tree.print(MyBTree.POSTORDER);
 		System.out.println();
-		
+		System.out.print("Levelorder :");
+		tree.print(MyBTree.LEVELORDER);
+		tree.visualize();
+		System.out.println();
+		System.out.println();
 		/*
 		 *      	1
 		 *    	   / \
@@ -42,12 +61,17 @@ public class MyBTree {
 		System.out.print("Postorder :");
 		tree.print(MyBTree.POSTORDER);
 		System.out.println(); 
+		System.out.print("Levelorder :");
+		tree.print(MyBTree.LEVELORDER);
+		System.out.println();
+		tree.visualize();
 	}
 	
 	
 	public final static int PREORDER = 1;
 	public final static int INORDER = 2;
 	public final static int POSTORDER = 3;
+	public final static int LEVELORDER = 4;
 	
 	private final static int TERMINATOR = -9999; 
 	
@@ -86,6 +110,7 @@ public class MyBTree {
 			case PREORDER: printPreorder(root); break;
 			case INORDER: printInorder(root); break;
 			case POSTORDER: printPostorder(root); break;
+			case LEVELORDER: printLevelorder(root); break;
 		}
 	}
 	
@@ -109,9 +134,24 @@ public class MyBTree {
 		printPostorder(root.right);
 		System.out.print(root.e + " ");
 	}
-
+	
+	public void printLevelorder(Node root){
+		if(root == null) return;
+		Queue<Node> Q = new LinkedList<Node>();
+		Q.offer(root);
+		while(!Q.isEmpty()){
+			Node t = Q.poll();
+			System.out.print(t.e + " ");
+			if(t.left != null) Q.offer(t.left);
+			if(t.right != null) Q.offer(t.right);
+		}
+	}
+	
+	public void visualize(){
+		Visualizer.visualize(this);
+	}
+	
 	public static class Node{
-		
 		public Node left;
 		public Node right;
 		public int e;
@@ -125,8 +165,6 @@ public class MyBTree {
 			this.left = left;
 			this.right = right;
 		}
-		
-				
 	}
 }
 

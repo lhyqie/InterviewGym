@@ -1,16 +1,19 @@
-package graph;
+package tree;
 
 import java.awt.Dimension;
-import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;
 
+import tree.MyBTree.Node;
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
-import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
@@ -18,8 +21,8 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
+
 public class Visualizer {
-	
 	static class Vertex{
 		private int id;
 		private String label;
@@ -49,42 +52,41 @@ public class Visualizer {
 		}
 	}
 	
-	public static void visualize(MyGraph G){
-		Graph<Vertex, String> g = null; 
-		if (G instanceof MyDGraph){
-			g = new DirectedSparseMultigraph<Vertex, String>();
-			// build graph by adding edges
-			for (int i = 0; i < G.n; i++) {			
-				for (int j : G.adj[i]) {
-					if(G.nodeLabels == null){
-						g.addEdge("edge:"+i+"->"+j, new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.DIRECTED);
-					}else{
-						g.addEdge("edge:"+i+"->"+j, new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.DIRECTED);
-					}
-				}
-			}
-		}else if(G instanceof MyUGraph){
-			HashSet<String> added_edges = new HashSet<String>(); // to avoid parallel edges in undirected graph
-			g = new UndirectedSparseMultigraph<Vertex, String>();
-			for (int i = 0; i < G.n; i++) {			
-				for (int j : G.adj[i]) {
-					int small = i;
-					int big = j;
-					if(small > big){ int t = big; big = small; small = t;}
-					if(!added_edges.contains(""+small+"->"+big)){
-						added_edges.add(""+small+"->"+big);
-						if(G.nodeLabels == null){
-							g.addEdge("edge:"+i+"->"+j, new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.UNDIRECTED);
-						}else{
-							g.addEdge("edge:"+i+"->"+j, new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.UNDIRECTED);
-						}
-					}
-				}
-			}
-		}else{
-			throw new RuntimeException("G is neither MyDGraph or MyUGraph");
+	public static void visualize(MyBTree tree){
+		if(tree.root == null) return;
+		
+		Graph<Vertex, String> g = new DirectedSparseMultigraph<Vertex, String>();
+		TreeMap<String, Integer> node2id = new TreeMap<String, Integer>();
+		AtomicInteger id = new AtomicInteger(0);
+	
+		Queue<Node> Q = new LinkedList<Node>();
+		Q.offer(tree.root);
+		while(!Q.isEmpty()){
+			Node t = Q.poll();
+			node2id.put(""+t.e, id.get());
+			id.incrementAndGet();
+			System.out.println(id + " : " + t.e);
+			if(t.left != null) Q.offer(t.left);
+			if(t.right != null) Q.offer(t.right);
 		}
 		
+		Q.clear();
+		Q.offer(tree.root);
+		while(!Q.isEmpty()){
+			Node t = Q.poll();
+			if(t.left != null){
+				Q.offer(t.left);
+				int parentId = node2id.get(""+t.e);
+				int childId = node2id.get(""+t.left.e);
+				g.addEdge("edge:"+parentId+"->"+childId, new Vertex(parentId, ""+t.e), new Vertex(childId, ""+t.left.e), EdgeType.DIRECTED);
+			}
+			if(t.right != null) {
+				Q.offer(t.right);
+				int parentId = node2id.get(""+t.e);
+				int childId = node2id.get(""+t.right.e);
+				g.addEdge("edge:"+parentId+"->"+childId, new Vertex(parentId, ""+t.e), new Vertex(childId, ""+t.right.e), EdgeType.DIRECTED);
+			}
+		}
 		//System.out.println("The graph g = " + g.toString());
 		Layout<Vertex, String> layout = new CircleLayout<Vertex, String>(g);
 		layout.setSize(new Dimension(500,500)); // sets the initial size of the space
@@ -104,6 +106,7 @@ public class Visualizer {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(vv);
 		frame.pack();
-		frame.setVisible(true);
+		frame.setVisible(true);	
 	}
+	
 }
