@@ -1,4 +1,4 @@
-package graph;
+package matrix;
 
 import java.util.Stack;
 

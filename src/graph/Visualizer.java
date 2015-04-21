@@ -21,9 +21,8 @@ import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 public class Visualizer {
 	
 	static class Vertex{
-		int id;
-		String label;
-		
+		private int id;
+		private String label;
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
@@ -31,7 +30,6 @@ public class Visualizer {
 			result = prime * result + ((label == null) ? 0 : label.hashCode());
 			return result;
 		}
-
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
@@ -42,20 +40,18 @@ public class Visualizer {
 				return false;
 			return id == ((Vertex)obj).id;
 		}
-
 		public Vertex(int id, String label){
 			this.id = id;
 			this.label = label;
 		}
-		
 		public String toString(){
 			return label;
 		}
 	}
 	
-	public static void visualize(MyGraph G, int mode){
+	public static void visualize(MyGraph G){
 		Graph<Vertex, String> g = null; 
-		if(mode == MyGraph.DIRECTED){
+		if (G instanceof MyDGraph){
 			g = new DirectedSparseMultigraph<Vertex, String>();
 			// build graph by adding edges
 			g.getEdges(EdgeType.DIRECTED);
@@ -68,10 +64,10 @@ public class Visualizer {
 					}
 				}
 			}
-		}else if(mode == MyGraph.UNDIRECTED){
+		}else if(G instanceof MyUGraph){
 			HashSet<String> added_edges = new HashSet<String>(); // to avoid parallel edges in undirected graph
 			g = new UndirectedSparseMultigraph<Vertex, String>();
-			g.getEdges(EdgeType.DIRECTED);
+			g.getEdges(EdgeType.UNDIRECTED);
 			for (int i = 0; i < G.n; i++) {			
 				for (int j : G.adj[i]) {
 					int small = i;
@@ -88,9 +84,8 @@ public class Visualizer {
 				}
 			}
 		}else{
-			throw new IllegalArgumentException("graph mode illegal : it should be MyGraph.DIRECTED or MyGraph.unDIRECTED");
+			throw new RuntimeException("G is neither MyDGraph or MyUGraph");
 		}
-		
 		
 		//System.out.println("The graph g = " + g.toString());
 		Layout<Vertex, String> layout = new CircleLayout<Vertex, String>(g);
@@ -107,12 +102,10 @@ public class Visualizer {
 		gm.setMode(ModalGraphMouse.Mode.PICKING);
 		vv.setGraphMouse(gm);
 		
-		JFrame frame = new JFrame("Simple Graph View");
+		JFrame frame = new JFrame("Graph View");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(vv);
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	
 }
