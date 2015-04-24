@@ -1,5 +1,7 @@
 package tree;
 
+import array.PermutateArray;
+
 
 /**
  * https://www.siggraph.org/education/materials/HyperGraph/video/mpeg/mpegfaq/huffman_tutorial.html
@@ -8,10 +10,11 @@ package tree;
  *
  */
 public class Huffman {
+	
 	public static void main(String[] args) {
 		
-		int [] elements = {5, 7, 10, 15, 20, 45};
-		int [] counts = {1, 2, 3, 4, 5, 6};
+		int [] elements = {1, 2, 3, 4, 5, 6};
+		int [] counts= {5, 7, 10, 15, 20, 45};
 		int n = 0;
 		for (int e : counts) {
 			n += e;
@@ -23,7 +26,7 @@ public class Huffman {
 				a[i++] = elements[j];
 			}
 		}
-		
+		PermutateArray.permutate(a);
 		StringBuffer sb = new StringBuffer();
 		for (int e : a) {
 			sb.append(e+" ");
