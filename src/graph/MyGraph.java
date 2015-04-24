@@ -2,8 +2,11 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * abstract class graph
@@ -16,6 +19,15 @@ public abstract class MyGraph {
 	int[][] M = null;
 	ArrayList<Integer>[] adj = null;
 	int n = 0; // # of nodes
+	
+	private final int WHITE = 1;  // unvisited
+	private final int GRAY = 2;   // discovered
+	private final int BLACK = 3;  // explored
+	
+	private int color [] = null;
+	private int d[] = null;        // discovered time-stamp
+	private int f[] = null;        // finished  time-stamp
+	private int parent[] = null;   // parent in the discovery path
 	
 	public void visualize(){
 		Visualizer.visualize(this);
@@ -53,5 +65,96 @@ public abstract class MyGraph {
 			}
 		}
 	}
-
+	
+	/**
+	 * run BFS at each node
+	 */
+	public void BFS(){
+		color =  new int[n];
+		d =  new int[n];
+		parent =  new int[n];
+		for (int i = 0; i < n; i++) {
+			color[i] = WHITE;
+			d[i] = Integer.MAX_VALUE;
+			parent[i] = -1;
+		}
+		for (int i = 0; i < n; i++) {
+			BFS_at(i);
+		}
+		System.out.println("discovered time : " +Arrays.toString(d));
+		System.out.println("parent : " + Arrays.toString(parent));
+		System.out.println();
+	}
+	
+	/**
+	 * run BFS_at certain node if it is undiscovered
+	 * @param startNodeIndex
+	 */
+	private void BFS_at(int startNodeIndex){
+		if(startNodeIndex < 0 || startNodeIndex >= n) throw new IllegalArgumentException("startNodeIndex invalid!");
+		if(color[startNodeIndex] != WHITE) return;  
+		
+		color[startNodeIndex] = GRAY;
+		d[startNodeIndex] = 0;
+		parent[startNodeIndex] = -1;
+		
+		Queue<Integer> Q = new LinkedList<Integer>();
+		Q.offer(startNodeIndex);
+		while(!Q.isEmpty()){
+			int u = Q.poll();
+			for (Integer v : adj[u]) {
+				if(color[v] == WHITE){
+					color[v] = GRAY;
+					d[v] = d[u] + 1;
+					parent[v] = u;
+					Q.offer(v);
+				}
+			}
+			color[u] = BLACK;
+			System.out.print(u+ ":" +nodeLabels[u]+ " ");
+			System.out.println(" Q = " + Q);
+		}
+	}
+	
+	/**
+	 * run DFS at each node
+	 */
+	public void DFS(){
+		color = new int[n];
+		d = new int[n];
+		f = new int[n];
+		parent = new int[n];
+		for (int i = 0; i < n; i++) {
+			color[i] = WHITE;
+			d[i] = Integer.MAX_VALUE;
+			parent[i] = -1;
+		}
+		AtomicInteger time = new AtomicInteger(-1);
+		for (int i = 0; i < n; i++) {
+			DFS_at(i, time);
+		}
+		System.out.println();
+		System.out.println("discovered time : " +Arrays.toString(d));
+		System.out.println("finished time : " +Arrays.toString(f));
+		System.out.println("parent : " + Arrays.toString(parent));
+		System.out.println();
+	}
+	
+	/**
+	 * recursively visit node
+	 */
+	private void DFS_at(int id, AtomicInteger time ){
+		if(id < 0 || id >= n) throw new IllegalArgumentException("id invalid!");
+		if(color[id] != WHITE) return;
+		color[id] = GRAY;
+		d[id] = time.incrementAndGet();
+		for (int v : adj[id]) {
+			if(color[v] == WHITE){
+				DFS_at(v, time);
+			}
+		}
+		color[id] = BLACK;
+		f[id] = time.incrementAndGet();
+		System.out.print(id+ ":" +nodeLabels[id]+ " ");
+	}
 }
