@@ -143,11 +143,32 @@ public class MyGraphTest {
 		G.DFS();
 		
 	}
-
+	
+	public static void Test_DAG(){
+		ArrayList<String> edges = null;
+		MyDGraph G = null;
+		
+//		edges = new ArrayList<String>(Arrays.asList("0->1","0->2","1->2","2->3","3->1"));
+//		G = new MyDGraph(edges);
+//		G.explain();
+//		//G.visualize();
+//		System.out.println(" G is DAG ? ");
+//		System.out.println(G.isDAG());
+		
+		edges = new ArrayList<String>(Arrays.asList("0->1","0->2","1->2","2->3"));
+		G = new MyDGraph(edges);
+		G.explain();
+		//G.visualize();
+		System.out.println(" G is DAG ? ");
+		System.out.println(G.isDAG());
+		
+	}
+	
 	public static void main(String[] args) {
 		//Test_Create_UnDirectedGraph();
 		//Test_Create_DirectedGraph();
 		//Test_Graph_BFS();
-		Test_Graph_DFS();
+		//Test_Graph_DFS();
+		Test_DAG();
 	}
 }

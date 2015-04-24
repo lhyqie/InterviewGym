@@ -20,14 +20,22 @@ public abstract class MyGraph {
 	ArrayList<Integer>[] adj = null;
 	int n = 0; // # of nodes
 	
-	private final int WHITE = 1;  // unvisited
-	private final int GRAY = 2;   // discovered
-	private final int BLACK = 3;  // explored
+	protected final int WHITE = 1;  // unvisited
+	protected final int GRAY = 2;   // discovered
+	protected final int BLACK = 3;  // explored
 	
-	private int color [] = null;
-	private int d[] = null;        // discovered time-stamp
-	private int f[] = null;        // finished  time-stamp
-	private int parent[] = null;   // parent in the discovery path
+	protected int color [] = null;
+	protected int d[] = null;        // discovered time-stamp
+	protected int f[] = null;        // finished  time-stamp
+	protected int parent[] = null;   // parent in the discovery path
+	
+	public String[] getNodeLabels(){
+		return nodeLabels;
+	}
+	
+	public int[] getFinishedTime(){
+		return f;
+	}
 	
 	public void visualize(){
 		Visualizer.visualize(this);
@@ -143,7 +151,7 @@ public abstract class MyGraph {
 	/**
 	 * recursively visit node
 	 */
-	private void DFS_at(int id, AtomicInteger time ){
+	private void DFS_at(int id, AtomicInteger time){
 		if(id < 0 || id >= n) throw new IllegalArgumentException("id invalid!");
 		if(color[id] != WHITE) return;
 		color[id] = GRAY;
@@ -157,4 +165,6 @@ public abstract class MyGraph {
 		f[id] = time.incrementAndGet();
 		System.out.print(id+ ":" +nodeLabels[id]+ " ");
 	}
+	
+
 }

@@ -1,8 +1,10 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Undirected Graph
@@ -126,5 +128,36 @@ public class MyDGraph extends MyGraph{
 			}
 			
 		}
+	}
+	
+	/**
+	 * if a directed graph is acyclic (DAG)
+	 * @return
+	 * idea: do DFS, if a GRAY node is visited, there is a cycle
+	 */
+	public boolean isDAG(){
+		color = new int[n];
+		for (int i = 0; i < n; i++) {
+			color[i] = WHITE;
+		}
+		for (int i = 0; i < n; i++) {
+			if(!isDAG_at(i)) return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * recursively visit node
+	 */
+	private boolean isDAG_at(int id){
+		if(id < 0 || id >= n) throw new IllegalArgumentException("id invalid!");
+		if(color[id] == BLACK) return true;
+		if(color[id] == GRAY) return false;
+		color[id] = GRAY;
+		for (int v : adj[id]) {
+			if(!isDAG_at(v)) return false;
+		}
+		color[id] = BLACK;
+		return true;
 	}
 }
