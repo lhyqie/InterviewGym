@@ -164,11 +164,26 @@ public class MyGraphTest {
 		
 	}
 	
+	public static void Test_Graph_Tranpose(){
+		ArrayList<String> edges = null;
+		MyDGraph G = null;
+		edges = new ArrayList<String>(Arrays.asList("0->1","0->2","1->2","2->3","3->1","4->3","4->5","5->5"));
+		G = new MyDGraph(edges);
+		G.explain();
+		G.visualize();
+		
+		MyGraph G2 = G.getTranpose();
+		G2.explain();
+		G2.visualize();
+		
+	}
+	
 	public static void main(String[] args) {
 		//Test_Create_UnDirectedGraph();
 		//Test_Create_DirectedGraph();
 		//Test_Graph_BFS();
 		//Test_Graph_DFS();
-		Test_DAG();
+		//Test_DAG();
+		Test_Graph_Tranpose();
 	}
 }

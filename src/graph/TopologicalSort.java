@@ -33,8 +33,10 @@ public class TopologicalSort {
 		}
 		System.out.println();
 		System.out.println("the following order is topological order");
+		System.out.println();
 		System.out.println("finished time :" + Arrays.toString(f));
 		System.out.println("nodes : " + Arrays.toString(nodeLabels));
+
 	}
 	
 }
