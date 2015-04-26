@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class MyGraph {
 	
 	String[] nodeLabels = null;
-	int[][] M = null;
-	ArrayList<Integer>[] adj = null;
+	int[][] M = null;				 // adjacent matrix, also representing connections and weights
+	ArrayList<Integer>[] adj = null; // adjacent list, representing connections
 	int n = 0; // # of nodes
 	
 	protected final int WHITE = 1;  // unvisited
@@ -197,6 +197,5 @@ public abstract class MyGraph {
 		f[id] = time.incrementAndGet();
 		System.out.print(id+ ":" +nodeLabels[id]+ " ");
 	}
-	
 
 }

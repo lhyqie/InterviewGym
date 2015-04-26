@@ -70,8 +70,14 @@ public class MyDGraph extends MyGraph{
 		this.n = adj.length;
 		this.adj = adj;
 		this.nodeLabels = new String[n];
+		this.M = new int[n][n];
 		for (int i = 0; i < n; i++) {
 			nodeLabels[i] = ""+i;
+		}
+		for (int i = 0; i < this.adj.length; i++) {
+			for (int j : this.adj[i]) {
+				M[i][j] = 1;
+			}
 		}
 	}
 	
@@ -84,6 +90,12 @@ public class MyDGraph extends MyGraph{
 		this.n = adj.length;
 		this.adj = adj;
 		this.nodeLabels = nodeLabels;
+		this.M = new int[n][n];
+		for (int i = 0; i < this.adj.length; i++) {
+			for (int j : this.adj[i]) {
+				M[i][j] = 1;
+			}
+		}
 	}
 	
 	/**

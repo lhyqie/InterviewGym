@@ -180,10 +180,10 @@ public class MyGraphTest {
 	
 	public static void main(String[] args) {
 		//Test_Create_UnDirectedGraph();
-		//Test_Create_DirectedGraph();
+		Test_Create_DirectedGraph();
 		//Test_Graph_BFS();
 		//Test_Graph_DFS();
 		//Test_DAG();
-		Test_Graph_Tranpose();
+		//Test_Graph_Tranpose();
 	}
 }
