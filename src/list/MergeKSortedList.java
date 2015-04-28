@@ -33,7 +33,6 @@ public class MergeKSortedList {
 	
 	public static void main(String[] args) {
 		ArrayList<Integer>[] lists = (ArrayList<Integer>[])new ArrayList[3];
-		int [] a1 = {1,3,5};
 		lists[0] = new ArrayList<Integer>(Arrays.asList(1,3,5));
 		lists[1] = new ArrayList<Integer>(Arrays.asList(2,2,7));
 		lists[2] = new ArrayList<Integer>(Arrays.asList(3,4,6));

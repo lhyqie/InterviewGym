@@ -22,6 +22,7 @@ public class FileUtils {
 				if(line.startsWith("#")) continue; // skip comments
 				lines.add(line);
 			}
+			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
