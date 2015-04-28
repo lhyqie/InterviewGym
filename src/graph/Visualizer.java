@@ -74,9 +74,9 @@ public class Visualizer {
 					if(!added_edges.contains(""+small+"->"+big)){
 						added_edges.add(""+small+"->"+big);
 						if(G.nodeLabels == null){
-							g.addEdge("edge:"+i+"->"+j, new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.UNDIRECTED);
+							g.addEdge(""+i+"-"+j+":"+G.M[i][j], new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.UNDIRECTED);
 						}else{
-							g.addEdge("edge:"+i+"->"+j, new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.UNDIRECTED);
+							g.addEdge(""+i+"-"+j+":"+G.M[i][j], new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.UNDIRECTED);
 						}
 					}
 				}
@@ -93,6 +93,7 @@ public class Visualizer {
 		VisualizationViewer<Vertex,String> vv = new VisualizationViewer<Vertex,String>(layout);
 		vv.setPreferredSize(new Dimension(500,500)); //Sets the viewing area size
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
 		vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 		
 		DefaultModalGraphMouse gm = new DefaultModalGraphMouse();

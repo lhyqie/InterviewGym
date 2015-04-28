@@ -113,8 +113,16 @@ public class MyUGraph extends MyGraph {
 		for (String edge : edges) {
 			String[] tokens = edge.split("-");
 			if(tokens.length != 2) { throw new IllegalArgumentException("format of each edges must be node1-node2 "); }
-			nodeSet.add(tokens[0]);
-			nodeSet.add(tokens[1]);
+			if(tokens[1].contains(":")){ //weighted graph
+				String[] pieces = tokens[1].split(":");
+				if(pieces.length != 2) {throw new IllegalArgumentException("format of each edges must be node1-node2 ");}
+				nodeSet.add(tokens[0]);
+				nodeSet.add(pieces[0]);
+			}else{ //unweighted graph
+				nodeSet.add(tokens[0]);
+				nodeSet.add(tokens[1]);
+			}
+			
 		}
 		
 		this.n = nodeSet.size();
@@ -134,10 +142,20 @@ public class MyUGraph extends MyGraph {
 		
 		for (String edge : edges) {
 			String[] tokens = edge.split("-");
-			int node_id1 = node2id.get(tokens[0]);
-			int node_id2 = node2id.get(tokens[1]);
-			M[node_id1][node_id2] = 1;
-			M[node_id2][node_id1] = 1;
+			int node_id1 = -1, node_id2 = -1;
+			int weight = 1;
+			if(tokens[1].contains(":")){ //weighted graph
+				String[] pieces = tokens[1].split(":");
+				node_id1 = node2id.get(tokens[0]);
+				node_id2 = node2id.get(pieces[0]);
+				weight = Integer.parseInt(pieces[1]);
+			}else{ //unweighted graph
+				node_id1 = node2id.get(tokens[0]);
+				node_id2 = node2id.get(tokens[1]);
+			}
+			
+			M[node_id1][node_id2] = weight;
+			M[node_id2][node_id1] = weight;
 			if(!adj[node_id1].contains(node_id2)) {
 				adj[node_id1].add(node_id2);
 			}

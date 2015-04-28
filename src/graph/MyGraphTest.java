@@ -56,6 +56,12 @@ public class MyGraphTest {
 		G = new MyUGraph(edges);
 		G.explain();
 		G.visualize();
+		
+		System.out.println("\n========================Test MyGraph(ArrayList<String>[] edges)==================================\n");
+		edges = new ArrayList<String>(Arrays.asList("A-B:1","B-C:2","C-D:3","D-E:2","E-F:1"));
+		G = new MyUGraph(edges);
+		G.explain();
+		G.visualize();
 	}
 	
 	public static void Test_Create_DirectedGraph(){
@@ -97,6 +103,12 @@ public class MyGraphTest {
 		
 		System.out.println("\n========================Test MyGraph(ArrayList<String>[] edges)==================================\n");
 		edges = new ArrayList<String>(Arrays.asList("A->B","B->C","C->D","D->E","E->F"));
+		G = new MyDGraph(edges);
+		G.explain();
+		G.visualize();
+		
+		System.out.println("\n========================Test MyGraph(ArrayList<String>[] edges)==================================\n");
+		edges = new ArrayList<String>(Arrays.asList("A->B:1","B->C:10","C->D:100","D->E:1","E->F:-1"));
 		G = new MyDGraph(edges);
 		G.explain();
 		G.visualize();
