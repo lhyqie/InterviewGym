@@ -1,6 +1,5 @@
 package string;
 
-import java.util.List;
 
 public class ReplaceSubstring {
 	public static void main(String[] args) {

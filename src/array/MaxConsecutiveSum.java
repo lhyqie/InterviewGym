@@ -1,6 +1,5 @@
 package array;
 
-import java.util.Arrays;
 import static utils.ArrayUtils.print;
 
 /**

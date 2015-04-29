@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import static utils.ArrayUtils.print ;
 /**
  * 
  * Anagram is a word or phrase formed by rearranging the letters of another word or phrase

@@ -2,7 +2,6 @@ package array;
 
 import java.util.Arrays;
 
-import utils.ArrayUtils;
 
 /**
  * Question: There are 2 sorted arrays A and B of size n each. 

@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.util.IdentityHashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JFrame;

@@ -3,7 +3,6 @@ package list;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.PriorityQueue;
 
 class Item implements Comparable<Item>{
@@ -38,7 +37,7 @@ public class MergeKSortedList {
 		lists[2] = new ArrayList<Integer>(Arrays.asList(3,4,6));
 		
 		ArrayList<Integer> mList = mergeKSortedList(lists);
-		//System.out.println(mList);
+		System.out.println(mList);
 		
 		//------------for talentbuddy-----------------------
 		String[] docs = new String[]{

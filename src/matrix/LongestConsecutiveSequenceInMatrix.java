@@ -1,6 +1,5 @@
 package matrix;
 
-import java.util.Stack;
 
 /**
  * @author howie
