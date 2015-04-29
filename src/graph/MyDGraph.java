@@ -152,7 +152,6 @@ public class MyDGraph extends MyGraph{
 			}
 			
 			M[node_id1][node_id2] = weight;
-			M[node_id2][node_id1] = weight;
 			if(!adj[node_id1].contains(node_id2)) {
 				adj[node_id1].add(node_id2);
 			}

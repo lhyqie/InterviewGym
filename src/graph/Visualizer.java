@@ -57,9 +57,9 @@ public class Visualizer {
 			for (int i = 0; i < G.n; i++) {			
 				for (int j : G.adj[i]) {
 					if(G.nodeLabels == null){
-						g.addEdge("edge:"+i+"->"+j, new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.DIRECTED);
+						g.addEdge(""+i+"->"+j+":"+G.M[i][j], new Vertex(i, ""+i), new Vertex(j, ""+j), EdgeType.DIRECTED);
 					}else{
-						g.addEdge("edge:"+i+"->"+j, new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.DIRECTED);
+						g.addEdge(""+i+"->"+j+":"+G.M[i][j], new Vertex(i, G.nodeLabels[i]), new Vertex(j, G.nodeLabels[j]), EdgeType.DIRECTED);
 					}
 				}
 			}
