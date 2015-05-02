@@ -1,11 +1,10 @@
-def convert_to_binary(num, length=8):
+def convert_to_binary(num, length):
     # 0 meaning filling heading 0s, 
     # {} is a place holder for length,  
     # b means binary format
     # '0{}b'.format(length) format number in binary string whose length is "length" 
-    binary_string_list = format(num, '0{}b'.format(length)) #list(format(num, '0{}b'.format(length)))   
-    #return [int(digit) for digit in binary_string_list]
-    return binary_string_list
+    binary = format(num, '0{}b'.format(length)) #list(format(num, '0{}b'.format(length)))   
+    return binary
 
 def ones_compliment(binary, length):
     """
@@ -45,7 +44,7 @@ def format_binary(n, length):
         give the binary representation of a decimal
         if n == 0 :    the binary string will be all 0's
         if n > 0 :     the binary string will be the direct translation of decimal to binary
-        if n < 0 :     the binary string will be 
+        if n < 0 :     the binary string will be the the two_compliments of decimal
          
     """
     if n == 0: return convert_to_binary(0, length)
@@ -67,7 +66,7 @@ def parse_binary(s, length):
         s = twos_compliment(s, length)
         #print 's=',s
         res = -int(s[1:], base=2)
-        if res == 0:  # negative 0 is reserved for -2^length
+        if res == 0:  # negative 0 is reserved for -2^(length-1)
             return -2**(length-1)
         else:
             return res
