@@ -6,10 +6,13 @@ import utils.ArrayUtils;
 
 public class ShellSort {
 	public static void main(String[] args) {
-		int a[] = ArrayUtils.randomIntArray(20);
-		System.out.println(Arrays.toString(a));
+		int[] origin = ArrayUtils.randomIntArray(20);
+		int[] a = origin.clone();
+		System.out.println("origin = " + Arrays.toString(origin));
 		shellSort(a);
-		System.out.println(Arrays.toString(a));
+		Arrays.sort(origin);
+		System.out.println("Arrays.sort(origin) =>  \n " + Arrays.toString(origin));
+		System.out.println("sorted a => \n " + Arrays.toString(a));
 	}
 
 	public static void shellSort(int[] a) {
