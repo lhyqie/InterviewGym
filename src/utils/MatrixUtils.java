@@ -36,6 +36,14 @@ public class MatrixUtils {
         return M;
 	}
 	
+	public static void print(double[][] M){
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M[i].length; j++) {
+				System.out.print(String.format("%5.3f\t", M[i][j]));
+			}
+			System.out.println();
+		}
+	}
 	
 	public static void print(int[][] M){
 		for (int i = 0; i < M.length; i++) {

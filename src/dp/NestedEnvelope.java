@@ -12,7 +12,7 @@ import java.util.List;
  * you can place envelope A inside envelope B if and only if the dimensions A are strictly smaller than the dimensions of B. 
  * Algorithm to determine the largest number of envelopes that can be nested inside one another.
  */
-public class NestedEnvelop {
+public class NestedEnvelope {
 	
 	public static void main(String[] args) {
 		
@@ -21,18 +21,18 @@ public class NestedEnvelop {
 		};
 		
 		for (int[][] testcase : testcases) {
-			List<Envelop> envelops = new ArrayList<Envelop>();
+			List<Envelope> envelops = new ArrayList<Envelope>();
 			for (int[] row : testcase) {
-				envelops.add(new Envelop(row[0], row[1]));
+				envelops.add(new Envelope(row[0], row[1]));
 			}
 			
-			for (Envelop envelop : envelops) {
+			for (Envelope envelop : envelops) {
 				System.out.print(envelop+" ");
 			}
 			System.out.println();
 			System.out.println("after sorting by area");
 			Collections.sort(envelops);
-			for (Envelop envelop : envelops) {
+			for (Envelope envelop : envelops) {
 				System.out.print(envelop+" ");
 			}
 			System.out.println();
@@ -47,7 +47,7 @@ public class NestedEnvelop {
 	 * @param envelops
 	 * @return
 	 */
-	public static int findMaximumDepth(List<Envelop> envelops){
+	public static int findMaximumDepth(List<Envelope> envelops){
 		int[] c = new int[envelops.size()];
 		if(envelops.size() == 0) return 0;
 		c[0] = 0;
@@ -70,12 +70,12 @@ public class NestedEnvelop {
 		return max;
 	}
 	
-	private static class Envelop implements Comparable<Envelop>{
+	private static class Envelope implements Comparable<Envelope>{
 		
 		private int w;
 		private int h;
 		
-		public Envelop(int w, int h){
+		public Envelope(int w, int h){
 			this.w = w;
 			this.h = h;
 		}
@@ -83,7 +83,7 @@ public class NestedEnvelop {
 			return "("+w +"," + h+")";
 		}
 		
-		public int compareTo(Envelop o) {
+		public int compareTo(Envelope o) {
 			return w * h - o.w * o.h;
 		}
 	}
