@@ -27,6 +27,7 @@ public class MyBTree {
 		System.out.print("Levelorder :");
 		tree.print(MyBTree.LEVELORDER);
 		tree.visualize();
+		System.out.println("depth = "+ tree.depth());
 		System.out.println();
 		System.out.println();
 		/*
@@ -38,7 +39,7 @@ public class MyBTree {
 		 *             / \
 		 *            5   6  
 		 */
-		int[] arr2 = {1,2,2,-9999,-9999,-9999,4,-9999,-9999,-9999,-9999,-9999,-9999,5,6};
+		int[] arr2 = {1,2,3,-9999,-9999,-9999,4,-9999,-9999,-9999,-9999,-9999,-9999,5,6};
 		tree = new MyBTree(arr2);
 		System.out.print("Preoder :");
 		tree.print(MyBTree.PREORDER);
@@ -53,6 +54,9 @@ public class MyBTree {
 		tree.print(MyBTree.LEVELORDER);
 		System.out.println();
 		tree.visualize();
+		System.out.println("depth = "+ tree.depth());
+		
+		
 	}
 	
 	
@@ -137,6 +141,17 @@ public class MyBTree {
 	
 	public void visualize(){
 		Visualizer.visualize(this);
+	}
+	
+	public int depth(){
+		return depthHelper(this.root);
+	}
+	
+	public int depthHelper(Node p){
+		if(p == null) return 0;
+		int leftDepth = depthHelper(p.left);
+		int rightDepth = depthHelper(p.right);
+		return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
 	}
 	
 	public static class Node{
