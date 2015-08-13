@@ -73,4 +73,11 @@ public class ArrayUtils {
 			}
 		}
 	}
+	
+	public static void print(char [][] arr){
+		for (int i = 0; i < arr.length; i++) {
+			print(arr[i]);
+			System.out.println();
+		}
+	}
 }
