@@ -2,7 +2,6 @@ package tree;
 
 import java.util.*;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_ADDPeer;
 
 public class BSTIterator {
 	
