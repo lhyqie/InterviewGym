@@ -1,65 +1,86 @@
 package company.twosigma;
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.HashSet;
+
 
 public class Solution {
 	
-	static void MissingNumberInAP(){
-		Scanner in = new Scanner(System.in);
-        int n;
-        n = in.nextInt();
-        if( n < 3) return;
-        
-        int i = 0;
-        int arr[] = new int[n];
-        while(i < n){
-        	arr[i++] = in.nextInt();
-        }
-        
-        
-        int min_diff = arr[1] - arr[0];
-        if(min_diff < 0){
-        	for(int j = 1; j < n; j++){
-            	min_diff = Math.max(min_diff, arr[j] - arr[j-1]);            	
-            	
-            }
-        }else{
-        	for(int j = 1; j < n; j++){
-        		min_diff = Math.min(min_diff, arr[j] - arr[j-1]);
-        	}
-        }
-                
-        int real_sum = (n+1) * arr[0] + min_diff * (n+1)* (n) / 2;
-        int sum = 0;
-        for(int e: arr) sum+= e;
-        System.out.println(real_sum - sum);
-	}
+	static int max_depth = 0;
 	
-	static void getNumberOfPrimes(){
-		Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int cnt = 0;
-        for(int i = 2; i <= n; i++){
-        	if(isPrime(i)) cnt++;
-        }
-        System.out.println(cnt);
-	}
-	
-	static boolean isPrime(int x){
-		if( x <= 1) return false;
-		if(x == 2) return true;
-		for(int i = 2; i <= Math.sqrt(x); i++){
-			if(x % i == 0) return false;
+	static class QuickUnion{
+		
+		int [] ids = null;
+		
+		public QuickUnion(int n){
+			this.ids = new int[n];
+			for (int i = 0; i < ids.length; i++) ids[i] = i;
 		}
-		return true;
+		
+		public boolean find(int p, int q){
+			return root(p) == root(q);
+		}
+		
+		public void unite(int p, int q){
+			int i = root(p);
+			int j = root(q);
+			ids[i] = j;
+		}
+		
+		public int root(int i){
+			while (i != ids[i]) i = ids[i];
+			return i;
+		}
+		
+		public int getSize(){
+			return this.ids.length;
+		}
+		
+	}
+
+	static int friendCircles(String[] friends) {
+		if(friends == null || friends.length == 0) return 0;
+		int n = friends.length;
+		
+		QuickUnion uf = new QuickUnion(n);
+		
+		for(int i = 0; i < n; i++){
+			for(int j = i+1; j < n; j++){
+				if(friends[i].charAt(j) == 'Y'){
+					uf.unite(i, j);
+				}
+			}
+		}
+		
+		HashSet<Integer> parents = new HashSet<Integer>();
+		
+		for (int i = 0; i < n; i++) {
+			int parent = uf.root(i);
+			//System.out.println(" node " + i +" 's parent is " + parent);
+			parents.add(parent);
+		}
+			
+		return parents.size();
+    }
+	
+	public static void FriendCircles(){
+		//		String[] friends = {"YNNNN", 
+		//        "NYNNN",
+		//        "NNYNN",
+		//        "NNNYN",
+		//        "NNNNY"};
+		String[] friends = {"YYNN",
+				"YYYN",
+				"NYYN",
+				"NNNY"};
+		
+		int res = friendCircles(friends);
+		System.out.println(res);
+	}
+		
+	public static void main(String[] args) {
+		FriendCircles();
+	
 	}
 	
-	public static void main(String[] args) {
-		MissingNumberInAP();
-		//getNumberOfPrimes();
-	}
+	
 }
