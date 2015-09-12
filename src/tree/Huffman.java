@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-import array.PermutateArray;
+import array.ShuffleArray;
 
 
 /**
@@ -35,7 +35,7 @@ public class Huffman {
 				a[i++] = elements[j];
 			}
 		}
-		PermutateArray.permutate(a);
+		ShuffleArray.permutate(a);
 		StringBuffer sb = new StringBuffer();
 		for (int e : a) {
 			sb.append(e);

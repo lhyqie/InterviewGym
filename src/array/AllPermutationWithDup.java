@@ -7,7 +7,8 @@ import com.sun.org.apache.bcel.internal.generic.SWAP;
 
 public class AllPermutationWithDup {
 	public static void main(String[] args) {
-		int[] nums = {1,2,2,3};
+		int[] nums = {1,2,3,2};
+					 //{1,2,2,3};
 					 //{1,2,2};  
 					 //{1,2,3};
 		List<List<Integer>> res = permuteUnique(nums);
@@ -15,7 +16,6 @@ public class AllPermutationWithDup {
 			System.out.println(list);
 		}
 		
-		System.out.println( (2 <<0) + 1);
 	}
 	
 	public static List<List<Integer>> permuteUnique(int[] nums) {
