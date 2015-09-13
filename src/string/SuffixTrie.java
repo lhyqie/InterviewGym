@@ -28,6 +28,16 @@ public class SuffixTrie {
 			System.out.println("index of hasSubString : " + target + "  = " + trie2.indexOfSubString(target));
 			System.out.println();
 		}
+		
+		System.out.println("--------------------------------------------------------------------");
+		SuffixTrie trie3 = new SuffixTrie("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT");
+		String [] targets3 = {"AAAAACCCCC", "CCCCCAAAAA"};
+		for (String target : targets3) {
+			System.out.println("has suffix : " + target + "  = " + trie3.hasSuffix(target));
+			System.out.println("has hasSubString : " + target + "  = " + trie3.hasSubString(target));
+			System.out.println("index of hasSubString : " + target + "  = " + trie3.indexOfSubString(target));
+			System.out.println();
+		}
 	}
 	
 	TrieNode root ;
