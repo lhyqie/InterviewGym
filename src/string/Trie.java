@@ -50,7 +50,7 @@ public class Trie {
 			for(Map.Entry<Character, TrieNode> entry : root.children.entrySet()){
 				printHelper(entry.getValue(), buffer);
 			}
-		}else{
+		}else{ // leaf
 			for (TrieNode node : buffer) {
 				System.out.print(""+node.val + " " + node.indexes+"  ");
 			}
