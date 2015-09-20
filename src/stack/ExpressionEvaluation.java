@@ -126,6 +126,11 @@ public class ExpressionEvaluation {
 				"0 * 1 + 2",
 				"1  - 0  * 1 + 8",
 				"1 + 0 - 0  * 1 + 2 * 2 * (2)",
+				
+				"3+2*2",
+				" 3/2 ",
+				" 3+5 / 2 ",
+				"14/3*2"
 		};
 		
 		for (String expression : init_expressions) {
