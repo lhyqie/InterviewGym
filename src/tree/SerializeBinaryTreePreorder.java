@@ -1,6 +1,6 @@
 package tree;
 
-public class SerializeBinaryTree {
+public class SerializeBinaryTreePreorder {
 	
 	static int buffer[] = new int[100];
 	static int nNodes = 0;
