@@ -1,7 +1,5 @@
 package dp;
 
-import cern.colt.Arrays;
-
 /**
  * page 360 of Introduction to Algorithms 3rd edition
  * 
