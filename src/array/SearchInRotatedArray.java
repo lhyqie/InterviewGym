@@ -3,20 +3,44 @@ package array;
 public class SearchInRotatedArray {
 
 	public static void main(String[] args) {
-		int A[] = { 3, 1 };
-		int target = 1;
-		int ret = search(A, target);
-		System.out.println("minimum at index : " + ret);
+		int A[] = null;
+		int target;
+		int targetIndex;
+		
+		A = new int[]{ 3, 1 };
+		target = 1;
+		targetIndex = search(A, target);
+		System.out.println("solution 1: target at index : " + targetIndex);
+		targetIndex = search2(A, target);
+		System.out.println("solution 2: target at index : " + targetIndex);
+		System.out.println();
+		
+		
+		A = new int[]{1,2,3,4,5,6,7,8,9};
+		target = 9;
+		targetIndex = search(A, target);
+		System.out.println("solution 1: target at index : " + targetIndex);
+		targetIndex = search2(A, target);
+		System.out.println("solution 2: target at index : " + targetIndex);
+		System.out.println();
+		
+		A = new int[]{9,5,6,7,8,9,9,9,9,9,9};
+		target = 8;
+		targetIndex = search(A, target);
+		System.out.println("solution 1: target at index : " + targetIndex);
+		targetIndex = search2(A, target);
+		System.out.println("solution 2: target at index : " + targetIndex);
+		System.out.println();
 	}
-
+	
+	// Solution 1: my two step solution
 	public static int findMinimum(int[] A) { // assume no dups
 		int left = 0, right = A.length - 1;
 		while (left < right) {
 			int mid = (left + right) >>> 1;
-			if (A[mid] > A[right]) { // minimum must be in range [mid + 1,
-										// right]
+			if (A[mid] > A[right]) { // minimum must be in range [mid + 1,right]
 				left = mid + 1;
-			} else { // A[mid] < A[right]
+			} else{ // A[mid] < A[right]
 				right = mid; // minimum still possible in mid
 			}
 		}
@@ -27,7 +51,7 @@ public class SearchInRotatedArray {
 		if (A == null || A.length == 0)
 			return -1;
 		int k = findMinimum(A);
-		System.out.println("minimum at index : " + k);
+		//System.out.println("minimum at index : " + k);
 		int n = A.length;
 		// A[0...n-1] is rotated array
 		// A[k...n-1+k] is the sorted array
@@ -45,9 +69,8 @@ public class SearchInRotatedArray {
 		return -1;
 	}
 	
-	/*  zhiyuan's solution
-	public class Solution {
-		public int search(int[] a, int target) {
+	// Solution 2: zhiyuan's solution
+	public static int search2(int[] a, int target) {
 			int left = 0;
 			int right = a.length - 1;
 			while (left <= right) {
@@ -69,9 +92,9 @@ public class SearchInRotatedArray {
 				}
 			}
 			return -1;
-		}
 	}
-	*/
+	
+	
 	
 	/*
 	 * old complex solution public int search(int[] A, int target) { //
