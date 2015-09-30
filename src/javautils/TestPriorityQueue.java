@@ -18,6 +18,7 @@ public class TestPriorityQueue {
 		pq2.add(new Item(50, 5));
 		pq2.add(new Item(100, 10));
 		System.out.println(pq2);
+			
 	}
 	
 	static class Item{

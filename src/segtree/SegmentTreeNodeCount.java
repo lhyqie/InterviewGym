@@ -3,6 +3,7 @@ package segtree;
 import java.util.Arrays;
 
 //note that start, end are the value range which may not be present in the array on which the tree is built
+
 public class SegmentTreeNodeCount {
 	public int start, end, count;
 	public SegmentTreeNodeCount left, right;
@@ -14,20 +15,25 @@ public class SegmentTreeNodeCount {
 	}
 	
 	public static void main(String[] args) {
-		int A[] = {0, 2, 3};
+		int A[] = {1,2,7,8,5}; //{0, 2, 3};
 		System.out.println("Array : " + Arrays.toString(A));
 		System.out.println("Build segement tree");
-		SegmentTreeNodeCount root = build(A);
+		SegmentTreeNodeCount root = build(Arrays.copyOfRange(A,0, A.length));  // don't destroy A
 		
 		System.out.println();
     	System.out.println("perform range count queries");
-		for(int start = 0; start <=3; start ++){
-			for(int end = start; end <=3; end ++){
+		for(int start = 0; start <=8; start ++){
+			for(int end = start; end <=8; end ++){
 				System.out.println("start ="+ start +" end="+end
 					+ " count of this range = " + query(root, start, end));
 			}
 		}
 		
+		System.out.println();
+		System.out.println("count # of numbers smaller before itself II :");
+		for(int a : A){
+			System.out.println("" + a + " : " + query(root, 0, a-1));
+		}
 	}
 	
 	// https://leetcode.com/problems/search-for-a-range/
