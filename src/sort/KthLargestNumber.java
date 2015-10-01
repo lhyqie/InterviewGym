@@ -37,9 +37,9 @@ public class KthLargestNumber {
 		if (part == nums.length - k)
 			return nums[part];
 		if (part < nums.length - k) {
-			return findKthLargest(nums, left + 1, right, k);
+			return findKthLargest(nums, part + 1, right, k);
 		} else { // part > nums.length - k
-			return findKthLargest(nums, left, right - 1, k);
+			return findKthLargest(nums, left, part - 1, k);
 		}
 	}
 
