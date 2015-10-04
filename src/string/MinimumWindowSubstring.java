@@ -5,10 +5,65 @@ import java.util.*;
 public class MinimumWindowSubstring {
 	
 	public static void main(String[] args) {
-		System.out.println(minWindow("75902135791158897", "159"));
-		System.out.println(minWindowII("acbbaca", "aba"));
+		System.out.println(minWindowII("abcd", "ac"));
+		//System.out.println(minWindowII("adfqeradboaf23098724huhfda923hadf78adfhadfhadfaodiyfas8", "dfje89affefy8f"));
+		//System.out.println(minWindowII("abc", "ac"));
+		//System.out.println(minWindow("75902135791158897", "159"));
+		//System.out.println(minWindowII("acbbaca", "aba"));
 	}
 	
+	public static String minWindowII(String source, String target) {
+		int need[] = new int[256];
+        int found[] = new int[256];
+        if(source == null || target == null || source.length() < target.length()) return "";
+        if(source.length() == 0) return "";
+        // calulate need
+        for(int i = 0; i < target.length(); i++){
+            need[target.charAt(i)] ++ ;
+        }
+        
+        // sliding window
+        int minStart = 0, minEnd = source.length();
+        int start = 0, end = 0;
+        int nCovered = 0;
+        
+        for(; end < source.length(); end ++){
+            // looping invaraint : [start, end) contains target
+    
+            // if we need more,  move end
+            while(end < source.length() && nCovered < target.length()){
+                char endCh = source.charAt(end);
+                if(found[endCh] < need[endCh]) nCovered++;
+                found[endCh] ++;
+                end++;
+            }
+            if(end == source.length() && nCovered < target.length() ) return "";  // s can not cover t
+            
+            char startCh = source.charAt(start);
+            // if we cover too much, move start
+            while(need[startCh] == 0 || found[startCh] > need[startCh]) {
+                found[startCh]--;
+                start ++;
+                startCh = source.charAt(start);
+            }
+            
+            // now nCovered == target.length()  and start can not move any further 
+            // because found[startCh] == need[startch]
+            if(end - start < minEnd - minStart){
+                minEnd = end;
+                minStart = start;
+            }
+            
+        }
+        if(end - start < minEnd - minStart){
+                minEnd = end;
+                minStart = start;
+        }
+        
+        return source.substring(minStart, minEnd);
+    }
+	
+	/*
 	//http://articles.leetcode.com/2010/11/finding-minimum-window-in-s-which.html
 	// there maybe duplicate in t
 	// for example s = "a",  t = "aa", there is no such window 
@@ -55,6 +110,7 @@ public class MinimumWindowSubstring {
 		
 		return count == n2 ? s.substring(minStart, minEnd + 1) : "";
 	}
+	*/
 	
 	// assume no duplicate in t
 	public static String minWindow(String s, String t) {
