@@ -18,7 +18,7 @@ public class BestTimeBuySellStockIV {
 		int [] prices = {1,2};
 		
 		int ret = maxProfit(k, prices);
-		System.out.println(ret);
+		System.out.println("maxProfit of k transaction =" + ret);
 	}
 	
 	public static int maxProfit(int k, int[] prices) {
