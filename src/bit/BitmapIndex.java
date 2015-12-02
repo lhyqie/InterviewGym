@@ -2,7 +2,7 @@ package bit;
 
 import java.util.BitSet;
 
-import array.PermutateArray;
+import array.ShuffleArray;
 
 
 /*          
@@ -31,7 +31,7 @@ public class BitmapIndex {
 			numbers[i] = i;
 		}
 		// permutate
-		PermutateArray.permutate(numbers);
+		ShuffleArray.permutate(numbers);
 		//System.out.println("Numbers : " + Arrays.toString(numbers));
 		endT = System.nanoTime();
 		//System.out.println(String.format("Time for numbers creation is %10.5f seconds", (endT - startT) / 1000000000.));

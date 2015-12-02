@@ -102,9 +102,8 @@ public class AnagramPalindromeII {
             res.add(row); 
             return;
         }
-        search(res, chs, k+1);  // no swapping
-        for(int j = k+1; j < chs.length; j++){
-        	if(chs[j] == chs[k]) continue;  // no dup
+        for(int j = k; j < chs.length; j++){
+        	if(!canSwap(chs, k, j)) continue;  // no dup
             swap(chs, k, j);             //swap with chs after it at index j
             search(res, chs, k+1);
             swap(chs, k, j);			 //undo the swap
@@ -115,5 +114,14 @@ public class AnagramPalindromeII {
         char t = chs[i];
         chs[i] = chs[j];
         chs[j] = t;
+    }
+    
+    private static boolean canSwap(char[] arr, int k, int j) {
+        for (int i = k; i < j; i++) {
+            if (arr[i] == arr[j]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

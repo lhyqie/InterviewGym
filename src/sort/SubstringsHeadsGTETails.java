@@ -1,7 +1,8 @@
 package sort;
 
 /**
- * How many significant subsequences are in this sequence, where the number of heads are not less than the number of tails?
+ * How many significant subsequences are in this sequence, where the number of heads are not less than
+ *  the number of tails?
  */
 public class SubstringsHeadsGTETails {
 	

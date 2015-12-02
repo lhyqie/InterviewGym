@@ -38,14 +38,24 @@ public class PartitionPositiveAndNegative {
 	 * @return
 	 */
 	static int paritionPosAndNeg(int []a, int left, int right){
+//		int pivot = 0;
+//		while(left < right){
+//			while(left < right && a[left] < pivot) left ++ ;
+//			while(left < right && a[right] >= pivot) right -- ;
+//			if(left >= right) break;
+//			swap(a, left, right);
+//			System.out.println("temp a =" + Arrays.toString(a));
+//		}
+//		return left;
+		
 		int pivot = 0;
-		while(left < right){
-			while(left < right && a[left] < pivot) left ++ ;
-			while(left < right && a[right] >= pivot) right -- ;
-			if(left >= right) break;
-			swap(a, left, right);
-			System.out.println("temp a =" + Arrays.toString(a));
+		while(left <= right){
+			while(left <= right && a[left] < pivot) left++;
+			while(left <= right && a[right] >= pivot) right--;
+			if(left < right){
+				swap(a, left, right);
+			}
 		}
-		return left;
+		return right + 1;
 	}
 }

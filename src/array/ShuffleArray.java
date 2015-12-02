@@ -1,9 +1,9 @@
 package array;
 
-import cern.colt.Arrays;
+import java.util.Arrays;
 import utils.ArrayUtils;
 
-public class PermutateArray {
+public class ShuffleArray {
 	public static void main(String[] args) {
 		int[] arr = ArrayUtils.randomIntArray(5);
 		System.out.println(Arrays.toString(arr));
@@ -16,7 +16,7 @@ public class PermutateArray {
 	 */
 	public static void permutate(int [] arr){
 		for (int i = 0; i < arr.length - 1; i++) {
-			int j = random(i+1, arr.length);
+			int j = random(i, arr.length);
 			swap(arr, i, j);
 		}
 	}

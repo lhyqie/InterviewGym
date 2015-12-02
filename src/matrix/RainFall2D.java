@@ -35,8 +35,8 @@ public class RainFall2D {
 	public static void main(String[] args) {
 		int m = 6;
 		Integer [] heights = {3,3,4,4,4,2,
-		 				  3,1,3,2,1,4,
-		 				  7,3,1,6,4,1};
+		 				  	  3,1,3,2,1,4,
+		 				  	  7,3,1,6,4,1};
 		int sum = rain(m, heights);
 		System.out.println(sum);
 	}

@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 import utils.ArrayUtils;
 
+
+// this one is better http://www.lintcode.com/en/problem/median-of-two-sorted-arrays/
+
 public class MedianOfTwoSortedArrayII {
 	public static void main(String[] args) {
 		int a[] = null;

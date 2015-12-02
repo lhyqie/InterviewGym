@@ -1,4 +1,4 @@
-package company.hankrank.sample;
+package company.hankerrank.sample;
 
 import java.io.*;
 import java.util.*;

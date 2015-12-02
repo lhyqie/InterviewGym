@@ -51,8 +51,7 @@ public class PointInPolygon {
 
 		/**
 		 * Return true if the given point is contained inside the boundary. See:
-		 * http
-		 * ://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+		 * http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 		 * 
 		 * @param test
 		 *            The point to check

@@ -8,6 +8,7 @@ import utils.MatrixUtils;
  *
  */
 public class MatrixChainProduct {
+	
 	public static void main(String[] args) {
 		int r[] = {30, 35, 15, 5, 10, 20};
 		int c[] = {35, 15, 5, 10, 20, 25};
